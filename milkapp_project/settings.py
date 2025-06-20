@@ -9,6 +9,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'dairyapp' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # For collectstatic
 
+# Static file storage using WhiteNoise (recommended for Render)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,16 +23,16 @@ INSTALLED_APPS = [
     'dairyapp',
 ]
 
-# Debug should be False in production
+# Production settings
 DEBUG = False
 
-# Render domain + local for testing
+# Allowed hosts (Render subdomain + local dev)
 ALLOWED_HOSTS = ['dairy-app-56d5.onrender.com', '127.0.0.1', 'localhost']
 
-# Middleware stack
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Serves static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Serve static files in production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -37,7 +40,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-# TEMPLATES section (required for Django)
+# Template rendering config
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -54,16 +57,13 @@ TEMPLATES = [
     },
 ]
 
-# Required for resolving URLs
+# Root URL configuration
 ROOT_URLCONF = 'milkapp_project.urls'
 
-# Static file storage with hashed names (recommended)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# WSGI
+# WSGI application
 WSGI_APPLICATION = 'milkapp_project.wsgi.application'
 
-# Database (default SQLite)
+# Database config (SQLite by default)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -71,7 +71,7 @@ DATABASES = {
     }
 }
 
-# Timezone and language
+# Localization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
