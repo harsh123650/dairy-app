@@ -12,3 +12,7 @@ services:
         value: milkapp_project.settings
       - key: PYTHON_VERSION
         value: 3.11
+      - key: SECRET_KEY
+        generateValue: true  # optional, but safer if not hardcoded
+      - key: ALLOWED_HOSTS
+        value: dairy-app-56d5.onrender.com
