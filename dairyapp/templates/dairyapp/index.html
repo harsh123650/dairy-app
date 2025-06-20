@@ -1,0 +1,179 @@
+{% load static %}
+<form method="post" action="/login/">
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dairy Farm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+<header class="navbar navbar-dark bg-dark fixed-top py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="#" class="navbar-brand d-flex align-items-center gap-2 mb-0">
+      <!-- SVG ICON -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83" />
+        <path d="M16.62 12l-5.74 9.94" />
+      </svg>
+      <strong>Dairy Farm</strong>
+    </a>
+
+    <nav class="d-flex gap-4">
+      <a class="nav-link text-white" href="#">Home</a>
+      <a class="nav-link text-white" href="#">Our Story</a>
+      <a class="nav-link text-white" href="#">Product</a>
+      <a class="nav-link text-white" href="#">Support</a>
+      <a class="nav-link text-white" href="#">Contact</a>
+    </nav>
+
+    <a href="#" class="text-white">
+      <img src="{% static 'bk1.png' %}" alt="Cart" width="24" height="24" />
+    </a>
+  </div>
+</header>
+
+<section class="hero-section text-center">
+  <div class="container position-relative">
+    <h1 class="fw-bold display-5 text-shadow-1">Crafted for purity</h1>
+    <p class="lead text-muted mb-4">Delivering farm-fresh milk to your doorstep</p>
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+      <a href="{% url 'login' %}" class="btn btn-primary">Start</a>
+
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+</section>
+
+{% load static %}
+<main>
+  <div class="container px-4 py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-5">
+      <!-- Card 1 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="100% Clean">
+          <div class="card-body">
+            <h5 class="card-title">100% Clean</h5>
+            <p class="card-text">Purified and hygienic milk directly from the farm.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Farm Fresh">
+          <div class="card-body">
+            <h5 class="card-title">Farm Fresh</h5>
+            <p class="card-text">Delivered daily with guaranteed freshness.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Small Batches">
+          <div class="card-body">
+            <h5 class="card-title">Small Batches</h5>
+            <p class="card-text">Crafted in limited quantities for better quality.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %} class="card-img-top" alt="Rooted in Tradition">
+          <div class="card-body">
+            <h5 class="card-title">Rooted in Tradition</h5>
+            <p class="card-text">Inspired by traditional dairy farming practices.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Natural Honey">
+          <div class="card-body">
+            <h5 class="card-title">Natural Honey</h5>
+            <p class="card-text">Sourced from organic hives for unmatched purity.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Clean Milk Again">
+          <div class="card-body">
+            <h5 class="card-title">Extra Clean</h5>
+            <p class="card-text">Double-filtered milk for extra safety.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Fresh Again">
+          <div class="card-body">
+            <h5 class="card-title">Ultra Fresh</h5>
+            <p class="card-text">Collected just hours before delivery.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img src="{% static 'honey.png' %}" class="card-img-top" alt="Honey Again">
+          <div class="card-body">
+            <h5 class="card-title">Sweet Honey</h5>
+            <p class="card-text">A perfect natural sweetener for your day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<section class="why-dairy">
+  <h2>Why dairy?</h2>
+  <div class="features">
+    <div class="feature">
+      <img src="{% static 'clean.png' %}" alt="100% Clean">
+      <span>100% Clean</span>
+    </div>
+    <div class="feature">
+      <img src="{% static 'fresh.png' %}" alt="Farm Fresh">
+      <span>Farm Fresh</span>
+    </div>
+    <div class="feature">
+      <img src="{% static 'batches.png' %}" alt="Made in Small Batches">
+      <span>Made in Small Batches</span>
+    </div>
+    <div class="feature">
+      <img src="{% static 'tradition.png' %}" alt="Rooted in Tradition">
+      <span>Rooted in Tradition</span>
+    </div>
+  </div>
+</section>
+
+<footer class="container py-5">
+  <!-- Footer code unchanged -->
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

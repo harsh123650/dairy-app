@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel – Dairy App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e3f2fd;
+            padding: 20px;
+        }
+        header {
+            background-color: #1565c0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            margin-top: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .panel {
+            background: #ffffff;
+            padding: 20px;
+            border-left: 6px solid #1976d2;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #0d47a1;
+            margin-top: 0;
+        }
+        p {
+            margin: 5px 0;
+            color: #333;
+        }
+        .section-title {
+            margin-bottom: 10px;
+            color: #1565c0;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        form input[type="submit"] {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .error-msg {
+            color: red;
+            font-weight: bold;
+        }
+        .footer-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            color: #1976d2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to Admin Panel</h1>
+</header>
+<div class="container">
+
+    <div class="panel">
+        <h2 class="section-title">📦 Latest Milk Delivery</h2>
+        {% if latest_delivery %}
+            <p><strong>Customer ID:</strong> {{ latest_delivery.customer_id }}</p>
+            <p><strong>Date:</strong> {{ latest_delivery.date }}</p>
+            <p><strong>Time:</strong> {{ latest_delivery.time }}</p>
+        {% else %}
+            <p>No delivery data submitted yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">🐄 Milking Data</h2>
+        {% if milking_data %}
+            <p><strong>Time:</strong> {{ milking_data.milk_time }}</p>
+            <p><strong>Quantity:</strong> {{ milking_data.milk_quantity }} litres</p>
+        {% else %}
+            <p>No milking data submitted yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">💊 Health Check Info</h2>
+        {% if health_data %}
+            <p>{{ health_data.health_notes }}</p>
+        {% else %}
+            <p>No health information submitted yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">👤 Create New User</h2>
+        {% if error %}
+            <p class="error-msg">{{ error }}</p>
+        {% endif %}
+        <form method="post" action="{% url 'create_user' %}">
+            {% csrf_token %}
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <label>Assign Group:</label>
+            <select name="group" required>
+                <option value="Admin">Admin</option>
+                <option value="Staff">Staff</option>
+                <option value="Worker">Worker</option>
+                <option value="Customer">Customer</option>
+            </select>
+            <input type="submit" value="Create User">
+        </form>
+    </div>
+
+    <!-- ✅ All Logs Section Starts Here -->
+
+    <div class="panel">
+        <h2 class="section-title">📜 All Milk Deliveries</h2>
+        {% for d in all_deliveries %}
+            <p><strong>Customer ID:</strong> {{ d.customer_id }} — Date: {{ d.date }} — Time: {{ d.time }}</p>
+        {% empty %}
+            <p>No deliveries yet.</p>
+        {% endfor %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">🐄 All Milking Logs</h2>
+        {% for m in all_milking %}
+            <p><strong>Time:</strong> {{ m.milk_time }} — <strong>Quantity:</strong> {{ m.milk_quantity }} L</p>
+        {% empty %}
+            <p>No milking logs found.</p>
+        {% endfor %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">💊 All Health Logs</h2>
+        {% for h in all_health %}
+            <p>{{ h.health_notes }}</p>
+        {% empty %}
+            <p>No health logs found.</p>
+        {% endfor %}
+    </div>
+
+    <div class="panel">
+        <h2 class="section-title">👥 All Users</h2>
+        {% for u in all_users %}
+            <p><strong>{{ u.username }}</strong> — Groups:
+                {% for g in u.groups.all %}
+                    {{ g.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    None
+                {% endfor %}
+            </p>
+        {% empty %}
+            <p>No users found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- ✅ End of Logs -->
+
+    <div class="footer-links">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+</body>
+</html>
